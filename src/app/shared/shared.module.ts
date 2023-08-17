@@ -14,6 +14,11 @@ import { NavComponent } from './nav/nav.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    NavComponent
   ]
 })
 export class SharedModule { }
