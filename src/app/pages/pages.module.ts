@@ -2,20 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LandingComponent } from './landing/landing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CotizacionesComponent } from './cotizaciones/cotizaciones.component';
 
 
 
 @NgModule({
   declarations: [
     LandingComponent,
-    DashboardComponent
+    DashboardComponent,
+    CotizacionesComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
     LandingComponent,
-    DashboardComponent
+    DashboardComponent,
+    CotizacionesComponent
   ]
 })
 export class PagesModule { }
