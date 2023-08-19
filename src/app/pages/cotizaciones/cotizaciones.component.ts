@@ -17,6 +17,10 @@ export class CotizacionesComponent implements OnInit{
 
   refrescar_cotizaciones() {
     
-    this.cotizacionesService.getCotizaciones()
+    this.cotizacionesService.getCotizaciones().subscribe( // el servicio de cotizaciones tiene que suscribirse (a cotizaciones.service) para obtener los datos del get
+    data => {
+      console.log(data)
+    }
+    )
   }
 }
