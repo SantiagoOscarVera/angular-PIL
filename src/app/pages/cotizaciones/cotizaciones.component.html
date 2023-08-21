@@ -23,19 +23,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="align-middle text-start">
-                    <td class="align-middle text-start">{{listCotizaciones[0].simbolo}}</td>
-                    <td class="d-xl-table-cell text-end" >{{listCotizaciones[0].ultimoPrecio}}</td>
-                    <td class="d-lg-table-cell text-end">{{listCotizaciones[0].variacionPorcentual}}%</td>
-                    <td class="d-xl-table-cell bg-success-subtle">{{listCotizaciones[0].puntas.cantidadCompra}}</td>
-                    <td class="d-lg-table-cell bg-success-subtle">{{listCotizaciones[0].puntas.precioCompra}}</td>
-                    <td class="d-md-table-cell bg-danger-subtle ">{{listCotizaciones[0].puntas.precioVenta}}</td>
-                    <td class="d-lg-table-cell bg-danger-subtle text-end">{{listCotizaciones[0].puntas.cantidadVenta}}</td>
-                    <td class="d-lg-table-cell text-end">{{listCotizaciones[0].apertura}}</td>
-                    <td class="d-md-table-cell text-end">{{listCotizaciones[0].minimo}}</td>
-                    <td class="d-xl-table-cell text-end">{{listCotizaciones[0].maximo}}</td>
-                    <td class="d-xl-table-cell text-end">{{listCotizaciones[0].ultimoCierre}}</td>
-                    <td class="d-xl-table-cell text-end">{{listCotizaciones[0].cantidadOperaciones}}</td>
+                <tr *ngFor="let item of listCotizaciones" class="align-middle text-start">
+                    <td class="align-middle text-start">{{item.simbolo}}</td>
+                    <td class="d-xl-table-cell text-end" >{{item.ultimoPrecio}}</td>
+                    <td class="d-lg-table-cell text-end">{{item.variacionPorcentual}}%</td>
+                    <td class="d-xl-table-cell bg-success-subtle">{{item.puntas? item.puntas.cantidadCompra : "-"}}</td>
+                    <td class="d-lg-table-cell bg-success-subtle">{{item.puntas? item.puntas.precioCompra : "-"}}</td>
+                    <td class="d-md-table-cell bg-danger-subtle ">{{item.puntas? item.puntas.precioVenta : "-"}}</td>
+                    <td class="d-lg-table-cell bg-danger-subtle text-end">{{item.puntas? item.puntas.cantidadVenta : "-"}}</td>
+                    <td class="d-lg-table-cell text-end">{{item.apertura}}</td>
+                    <td class="d-md-table-cell text-end">{{item.minimo}}</td>
+                    <td class="d-xl-table-cell text-end">{{item.maximo}}</td>
+                    <td class="d-xl-table-cell text-end">{{item.ultimoCierre}}</td>
+                    <td class="d-xl-table-cell text-end">{{item.cantidadOperaciones}}</td>
                     <td class="d-md-table-cell text-end"><button> Comprar</button></td>
                 </tr>
             </tbody>
