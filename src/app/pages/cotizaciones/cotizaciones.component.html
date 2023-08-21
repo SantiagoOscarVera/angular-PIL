@@ -1,3 +1,159 @@
 <h1>{{title}}</h1>
 
-<button class="btn btn-dark m-2" (click)="refrescar_cotizaciones()"> <img [src]="imagen" alt="boton refrescar"> Refrescar Cotizaciones</button>
+<!-- <button class="btn btn-dark m-2" (click)="refrescar_cotizaciones()"> <img [src]="imagen" alt="boton refrescar">
+    Refrescar Cotizaciones</button> -->
+
+    <div class="container">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th class="d-lg-table-cell" scope="col">Simbolo</th>
+                    <th class="d-lg-table-cell" scope="col">Último Operado</th>
+                    <th class="d-lg-table-cell" scope="col">Variación Diaria</th>
+                    <th class="d-lg-table-cell" scope="col">Cantidad Compra</th>
+                    <th class="d-lg-table-cell" scope="col">Precio Compra</th>
+                    <th class="d-lg-table-cell" scope="col">Precio Venta</th>
+                    <th class="d-lg-table-cell" scope="col">Cantidad Venta</th>
+                    <th class="d-lg-table-cell" scope="col">Apertura</th>
+                    <th class="d-lg-table-cell" scope="col">Minimo</th>
+                    <th class="d-lg-table-cell" scope="col">Maximo</th>
+                    <th class="d-lg-table-cell" scope="col">Ultimo Cierre</th>
+                    <th class="d-lg-table-cell" scope="col">Monto Operado</th>
+                    <th class="d-lg-table-cell" scope="col">Comprar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="align-middle text-start">
+                    <td class="align-middle text-start">{{listCotizaciones[0].simbolo}}</td>
+                    <td class="d-xl-table-cell text-end" >{{listCotizaciones[0].ultimoPrecio}}</td>
+                    <td class="d-lg-table-cell text-end">{{listCotizaciones[0].variacionPorcentual}}%</td>
+                    <td class="d-xl-table-cell bg-success-subtle">{{listCotizaciones[0].puntas.cantidadCompra}}</td>
+                    <td class="d-lg-table-cell bg-success-subtle">{{listCotizaciones[0].puntas.precioCompra}}</td>
+                    <td class="d-md-table-cell bg-danger-subtle ">{{listCotizaciones[0].puntas.precioVenta}}</td>
+                    <td class="d-lg-table-cell bg-danger-subtle text-end">{{listCotizaciones[0].puntas.cantidadVenta}}</td>
+                    <td class="d-lg-table-cell text-end">{{listCotizaciones[0].apertura}}</td>
+                    <td class="d-md-table-cell text-end">{{listCotizaciones[0].minimo}}</td>
+                    <td class="d-xl-table-cell text-end">{{listCotizaciones[0].maximo}}</td>
+                    <td class="d-xl-table-cell text-end">{{listCotizaciones[0].ultimoCierre}}</td>
+                    <td class="d-xl-table-cell text-end">{{listCotizaciones[0].cantidadOperaciones}}</td>
+                    <td class="d-md-table-cell text-end"><button> Comprar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+<div class="modal" id="modalCompras" tabindex="-1" role="dialog" aria-labelledby="modalComprasLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title " style="color: rgb(91, 86, 167);" id="modalComprasLabel">Comprar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="vertical-align: 2px;"
+                        fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                </h5>
+            </div>
+            <div class="modal-body bg-primary bg-opacity-10">
+                <div class="">
+                    <div class="row">
+                        <div class="col-md-1 me-5 ">
+                            <!-- Primera columna -->
+                            <ul style="list-style-type: none; padding: 0;">
+                                <li class="mb-4">Mercado</li>
+                                <li class="mb-4">Simbolo</li>
+                                <li class="mb-5">Cantidad/Monto</li>
+                                <li class="mb-5">Modalidad</li>
+                                <li class="mb-3">Validez</li>
+                            </ul>
+                        </div>
+                        <!-- Segunda columna -->
+                        <div class="col-md-2">
+                            <div class="form-group mb-3">
+                                <select class="form-control" id="select1">
+                                    <option value="opcion1">Argentina</option>
+                                    <option value="opcion2">Opción 2</option>
+                                    <option value="opcion3">Opción 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="text" class="form-control" id="input1" placeholder="ARKK">
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Cantidad
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Monto
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Precio mercado
+                                </label>
+                            </div>
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Precio limite
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="select2">
+                                    <option value="opcion1">Para mañana</option>
+                                    <option value="opcion2">Opción 2</option>
+                                    <option value="opcion3">Opción 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- tercer columna -->
+                        <div class="col-md-2">
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Plazo normal
+                                </label>
+                            </div>
+                            <div class="form-check mb-5">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    C. inmediato
+                                </label>
+                            </div>
+                            <div class="form-group mb-4">
+                                <input type="text" class="form-control mb-1" id="input1" placeholder="">
+
+                                <input type="text" class="form-control" id="input1" placeholder="">
+                            </div>
+                            <div class="form-group ">
+                                <input type="text" class="form-control" id="input1" placeholder="ARKK">
+                            </div>
+                            <div class="position-absolute top-0 end-0 me-2">
+                                Precio actual: <span class="text-success">2.200.000 (0.00%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Comprar</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</div>

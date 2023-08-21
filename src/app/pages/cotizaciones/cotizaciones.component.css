@@ -1,3 +1,101 @@
 img {
     width: 5%;
 }
+
+/* .container {
+    margin-top: 35vh;
+} */
+
+.titulo_container {
+    margin: 0 auto;
+    background-color: rgb(170, 107, 200);
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    display: flex;
+    padding-top: 10px;
+    justify-content: center;
+    font-size: 11px;
+    padding-top: 7px;
+}
+
+#nombre_activo {
+    padding-right: 80px;
+    align-items: center;
+}
+
+.contenido_tabla {
+    border-left: 4px solid green;
+    border-bottom: 1px solid rgb(169, 169, 169);
+    border-right: 1px solid rgb(169, 169, 169);
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.img_cedears {
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+#nombre_activo_cedear {
+    display: flex;
+    padding-right: 45px;
+    align-items: center;
+}
+
+.Variación_diaria img {
+    width: 17px;
+    height: 27px;
+    margin-left: 23px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.Variación_diaria {
+    display: flex;
+    font-size: 10px;
+    margin-left: 10px;
+    color: green;
+}
+
+.compra {
+    background-color: rgba(3, 242, 171, 0.1);
+}
+
+.venta {
+    background-color: rgba(240, 54, 63, 0.1);
+}
+
+.container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+
+}
+
+.Variación_diaria_down {
+    display: flex;
+    font-size: 10px;
+    margin-left: 10px;
+    color: red;
+}
+
+.Variación_diaria_down img {
+    width: 17px;
+    height: 27px;
+    margin-left: 23px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.contenido_tabla_down {
+    border-left: 4px solid red;
+    border-bottom: 1px solid rgb(169, 169, 169);
+    border-right: 1px solid rgb(169, 169, 169);
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}

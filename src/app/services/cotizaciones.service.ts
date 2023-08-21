@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CotizacionesService { /* es un provider asi que lo ponemos en app.module y ademas se importa en el constructor del compoenente en este caso cotizaciones */
   
-  url:string = "./assets/data/06-07-23.json"
+  url:string = "./assets/data/06-07-23.json" // traemos la info de este json
 
   constructor(private http: HttpClient) { }
 
