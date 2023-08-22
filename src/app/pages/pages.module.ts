@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LandingComponent } from './landing/landing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CotizacionesComponent } from './cotizaciones/cotizaciones.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,7 +14,8 @@ import { CotizacionesComponent } from './cotizaciones/cotizaciones.component';
     CotizacionesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [
     LandingComponent,
