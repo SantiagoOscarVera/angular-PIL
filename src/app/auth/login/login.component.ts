@@ -18,4 +18,15 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
   }
 
+  get email() {
+    return this.loginForm.controls.email; /* me muestra mensaje cuando se hace click en el casillero de mail y muestra alert cuando no esta correcto */
+  }
+
+  get password() {
+    return this.loginForm.controls.password;
+  }
+
+  login() {
+    
+  }
 }

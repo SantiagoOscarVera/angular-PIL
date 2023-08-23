@@ -1,11 +1,28 @@
-<form [formGroup]="loginForm"> <!-- tira error pero en el renderizado anda -->
-    <div class="mb-3">
+<form [formGroup]="loginForm" (submit)="login()"> <!-- tira error pero en el renderizado anda --> <!-- agregamos el servicio login -->
+    <div class="mb-3"> 
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+            <div *ngIf="email.errors?.['required']">
+                Email es requerido
+            </div>
+            <div *ngIf="email.errors?.['email']">
+                El email debe tener un formato valido
+            </div>
+        </div>
     </div>
+
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+    
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+            <div *ngIf="password.errors?.['required']">
+                Password es requerido
+            </div>
+        </div>
+
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid"  >Iniciar sesion</button>
 </form>
