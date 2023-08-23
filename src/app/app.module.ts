@@ -6,6 +6,7 @@ import { PagesModule } from './pages/pages.module';
 import { CotizacionesService } from './services/cotizaciones.service';
 import { SharedModule } from './shared/shared.module';
 import {HttpClientModule} from "@angular/common/http"
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {HttpClientModule} from "@angular/common/http"
     AppRoutingModule,
     SharedModule,
     PagesModule,
-    HttpClientModule /* se importa para poder consumirlo porque es un servicio y se lleva a mi cotizaciones.service */
+    HttpClientModule, /* se importa para poder consumirlo porque es un servicio y se lleva a mi cotizaciones.service */
+    AuthModule,
   ],
   providers: [CotizacionesService],
   bootstrap: [AppComponent]
