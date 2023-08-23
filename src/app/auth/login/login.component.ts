@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,8 +8,8 @@ import { FormBuilder } from '@angular/forms';
 export class LoginComponent implements OnInit{
 
   loginForm = this.formBuilder.group({ /* para manejar el formulario */
-    email: ['santiago'],  /* lo que va entre parentesis vendria a ser un valor por defecto */
-    password: ['']
+    email: ['', [Validators.required, Validators.email]],  /* lo que va entre parentesis vendria a ser un valor por defecto */
+    password: ['', Validators.required]
   })
 
 
