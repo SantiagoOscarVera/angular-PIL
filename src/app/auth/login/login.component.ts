@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit{
   })
 
 
-  constructor (private formBuilder: FormBuilder) {} /* FormBuilder es un servicio que se utiliza para poder construir formularios */
+  constructor (private formBuilder: FormBuilder, private authService: AuthService, private route: Router) {} /* FormBuilder es un servicio que se utiliza para poder construir formularios */ /* tambien inyectamos el authService */
 
   ngOnInit(): void {
   }
@@ -28,5 +30,16 @@ export class LoginComponent implements OnInit{
 
   login() {
     
+    console.log(this.loginForm.value)
+    this.authService.login(this.loginForm.value).subscribe ( /* se tiene que suscribir sino no va a pasar nada */
+      {
+        next: (data) => {
+          console.log(data)
+          this.route.navigate(["/dashboard"])
+        },
+        error: (error) => {console.log(error)},
+        complete: () => {console.log()}
+      }
+    )
   }
 }
