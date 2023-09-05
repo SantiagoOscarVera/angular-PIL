@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
+  error?: string = "";
 
   loginForm = this.formBuilder.group({ /* para manejar el formulario */
     email: ['', [Validators.required, Validators.email]],  /* lo que va entre parentesis vendria a ser un valor por defecto */
@@ -37,7 +38,9 @@ export class LoginComponent implements OnInit{
           console.log(data)
           this.route.navigate(["/dashboard"])
         },
-        error: (error) => {console.log(error)},
+        error: (error) => {
+          this.error = error; /* trae el mensaje de error del auth.service "    return throwError(() => new Error('Something bad happened; please try again later.')); "*/
+          console.log(error)}, 
         complete: () => {console.log()}
       }
     )

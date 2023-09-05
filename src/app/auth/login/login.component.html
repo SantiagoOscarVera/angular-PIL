@@ -1,3 +1,5 @@
+<p *ngIf="error?.length!=0" class="alert alert-danger">{{error}}</p> <!-- maneja el error del auth service -->
+
 <form [formGroup]="loginForm" (submit)="login()"> <!-- tira error pero en el renderizado anda --> <!-- agregamos el servicio login -->
     <div class="mb-3"> 
         <label for="exampleInputEmail1" class="form-label">Email address</label>
