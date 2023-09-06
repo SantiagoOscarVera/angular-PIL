@@ -11,10 +11,10 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/cotizaciones">Cotizaciones</a>
         </li>
-        <li *ngIf="!loginOn" class="nav-item"> <!-- *ngIf="!loginOn" condicional para que aparezca inicialmente el iniciar sesion ya que la negamos -->
+        <li *ngIf="loginOn" class="nav-item"> <!-- *ngIf="!loginOn" condicional para que aparezca inicialmente el iniciar sesion ya que la negamos -->
           <a class="nav-link" routerLink="/login">Iniciar sesion</a>
         </li>
-        <li *ngIf="loginOn" class="nav-item"> <!-- *ngIf="loginOn" condicional para que no aparezca inicialmente el iniciar sesion ya que la negamos -->
+        <li *ngIf="!loginOn" class="nav-item"> <!-- *ngIf="loginOn" condicional para que no aparezca inicialmente el iniciar sesion ya que la negamos -->
           <a class="nav-link" routerLink="/cotizaciones">Cerrar sesion</a>
         </li>
       </ul>

@@ -1,32 +1,42 @@
 import {HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, Observable,tap, throwError } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  url:string="https://reqres.in/api/login";
+  private url:string="https://reqres.in/api/login";
+  private currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); /* esto es para que la autentificacion me habilite cambios al iniciar sesion */
 
   constructor(private http:HttpClient) { }
 
   login(loginRequest:any):Observable<any> {
-    return  this.http.post(this.url,loginRequest).pipe(
+    return  this.http.post(this.url,loginRequest).pipe( /* pipe me permite encadenar el error y el behaviorSubject */
+      tap((loginData) => { // usamos al tap para que "agarre" una accion
+        console.log(loginData) // agregar validacion
+        this.currentUserLoginOn.next(true) // siempre ponerle next para especificar el siguiente valor
+      }),
       catchError(this.handleError)
     );
   }
 
+  get isUserLoginOn():Observable<boolean> /* con esto los demas componentes pueden acceder desde afuera al servicio */
+  {
+    return this.currentUserLoginOn.asObservable(); /* esto labura con el observable de arriba */
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
+      
       console.error('An error occurred:', error.error);
     } else {
-      // The backend returned an unsuccessful response code. 
-      // The response body may contain clues as to what went wrong.
+      
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    // Return an observable with a user-facing error message.
+    
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
