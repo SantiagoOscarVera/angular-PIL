@@ -14,9 +14,11 @@ export class AuthService {
 
   login(loginRequest:any):Observable<any> {
     return  this.http.post(this.url,loginRequest).pipe( /* pipe me permite encadenar el error y el behaviorSubject */
-      tap((loginData) => { // usamos al tap para que "agarre" una accion
-        console.log(loginData) // agregar validacion
-        this.currentUserLoginOn.next(true) // siempre ponerle next para especificar el siguiente valor
+      tap((token) => { // usamos al tap para que "agarre" una accion
+        if(JSON.stringify(token).length!=0) // agregar validacion y es para que devuelva el token
+        {
+          this.currentUserLoginOn.next(true)
+        } // siempre ponerle next para especificar el siguiente valor
       }),
       catchError(this.handleError)
     );
